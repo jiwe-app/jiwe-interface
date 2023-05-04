@@ -1,14 +1,15 @@
 import SwiftUI
 
 public protocol JiweWidget {
-    var name: String { get set };
-    var view: any View { get set };
+    associatedtype WidgetView: View
+    var name: String { get set }
+    var view: WidgetView { get set }
 }
 
-open class JiweWidgetBuilder {
+open class JiweWidgetBuilder<WidgetType: JiweWidget> {
     public init() {}
     
-    open func build() -> JiweWidget {
+    open func build() -> WidgetType {
         fatalError("You have to override this method.")
     }
 }
